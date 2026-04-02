@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Bake House - Links</title>
+    
+    <!-- Memanggil Tailwind CSS untuk styling instan -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Memanggil Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Konfigurasi warna tema -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        cherry: {
+                            light: '#ffe4e6', // Soft pink
+                            DEFAULT: '#e11d48', // Merah Cherry
+                            dark: '#9f1239', // Merah gelap
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS TAMBAHAN UNTUK ANIMASI & BACKGROUND -->
+    <style>
+        /* 1. Efek Background Pattern Polkadot Halus */
+        body {
+            background-color: #fff1f2; /* Rose 50 */
+            background-image: radial-gradient(#e11d4815 1.5px, transparent 1.5px);
+            background-size: 24px 24px; /* Jarak antar titik */
+        }
+
+        /* 2. Animasi Fade In antar Tab */
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 3. Animasi Efek Gelombang (Ripple) saat disentuh */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 600ms linear;
+            background-color: rgba(225, 29, 72, 0.15); /* Warna efek gelombang (merah pudar) */
+            pointer-events: none; /* Agar tidak menghalangi klik */
+        }
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Safe Area untuk layar HP (iPhone Notch) */
+        .pb-safe-area {
+            padding-bottom: env(safe-area-inset-bottom, 8px);
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased pb-24">
+
+    <!-- Pesan Toast (Muncul saat copy link di laptop) -->
+    <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-full text-xs opacity-0 transition-opacity duration-300 pointer-events-none z-[100] shadow-lg">
+        Tautan berhasil disalin!
+    </div>
+
+    <!-- Container Utama -->
+    <main class="max-w-md mx-auto min-h-screen relative px-4 pt-10">
+
+        <!-- TOMBOL SHARE DI POJOK KANAN ATAS -->
+        <!-- ripple-btn adalah penanda bahwa tombol ini punya efek gelombang saat diklik -->
+        <button id="share-btn" class="absolute top-2 right-4 w-10 h-10 bg-white rounded-full shadow-sm border border-gray-200 text-gray-500 hover:text-cherry flex items-center justify-center transition-colors ripple-btn overflow-hidden z-10">
+            <i class="fa-solid fa-share-nodes"></i>
+        </button>
+
+        <!-- ==================== BAGIAN HEADER (LOGO & PROFIL) ==================== -->
+        <div class="flex items-center gap-4 mb-8 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-cherry-light relative mt-6">
+            <!-- Logo -->
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                 alt="Logo Cherry" 
+                 class="w-20 h-20 rounded-xl object-cover border-2 border-cherry-light shrink-0">
+            
+            <!-- Detail Profil -->
+            <div class="flex-1">
+                <h1 class="text-xl font-bold text-cherry-dark leading-tight uppercase">Cherry Bake House</h1>
+                <p class="text-[11px] text-gray-500 mt-1 mb-2 font-medium">We Cherish u • Bake House B2B Supplier</p>
+                
+                <!-- STATUS TOKO (Isinya akan diubah oleh JavaScript di bawah) -->
+                <div id="store-status">
+                    <!-- Default loading state -->
+                    <span class="text-[10px] text-gray-400">Memuat status...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAMPILAN 1: HOME ==================== -->
+        <div id="home-view" class="flex flex-col gap-3 animate-fade-in">
+            <div class="text-center mb-1">
+                <span class="text-xs font-bold text-cherry tracking-widest uppercase bg-cherry-light px-3 py-1 rounded-full">
+                    Semua Akses Ada Disini
+                </span>
+            </div>
+
+            <!-- Tombol 1: ORDER SEKARANG -->
+            <a href="#" class="ripple-btn group relative flex items-center p-1 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-cherry hover:shadow-md transition-all overflow-hidden">
+                <div class="w-14 h-14 bg-[#25D366] text-white rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform z-10">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <span class="flex-1 text-center font-bold text-gray-700 group-hover:text-cherry transition-colors pr-14 z-10">
+                    ORDER SEKARANG
+                </span>
+            </a>
+
+            <!-- Tombol 2: DAFTAR MENU PDF -->
+            <a href="#" class="ripple-btn group relative flex items-center p-1 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-cherry hover:shadow-md transition-all overflow-hidden">
+                <div class="w-14 h-14 bg-orange-500 text-white rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform z-10">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <span class="flex-1 text-center font-bold text-gray-700 group-hover:text-cherry transition-colors pr-14 z-10">
+                    DAFTAR MENU PDF
+                </span>
+            </a>
+
+            <!-- Tombol 3: GALLERY CAKE -->
+            <a href="#" class="ripple-btn group relative flex items-center p-1 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-cherry hover:shadow-md transition-all overflow-hidden">
+                <div class="w-14 h-14 bg-pink-500 text-white rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform z-10">
+                    <i class="fa-solid fa-images"></i>
+                </div>
+                <span class="flex-1 text-center font-bold text-gray-700 group-hover:text-cherry transition-colors pr-14 z-10">
+                    GALLERY CAKE
+                </span>
+            </a>
+
+            <!-- Tombol 4: GMAPS -->
+            <a href="#" class="ripple-btn group relative flex items-center p-1 bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-cherry hover:shadow-md transition-all overflow-hidden">
+                <div class="w-14 h-14 bg-blue-500 text-white rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform z-10">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <span class="flex-1 text-center font-bold text-gray-700 group-hover:text-cherry transition-colors pr-14 z-10">
+                    LOKASI (GMAPS)
+                </span>
+            </a>
+        </div>
+
+        <!-- ==================== TAMPILAN 2: TAP LOCATION ==================== -->
+        <div id="location-view" class="hidden flex flex-col gap-4 animate-fade-in">
+            <h2 class="text-[11px] font-bold text-gray-600 tracking-widest uppercase">TAP LOCATION</h2>
+            
+            <div class="rounded-2xl overflow-hidden border border-gray-300 shadow-sm h-56 relative">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347863155!2d107.57311709235512!3d-6.903444341687889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Bandung%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="bg-[#fffdf8] rounded-2xl shadow-sm border border-gray-300 p-4">
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-4 mb-4">
+                    <div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center shrink-0 bg-[#fffdf8]">
+                        <i class="fa-solid fa-location-dot text-gray-700"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-[#0d5c31] text-sm">Buka di Google Maps</h3>
+                        <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Jl. Mawar Merah No. 12, Kawasan Kuliner, Jakarta 12345.</p>
+                    </div>
+                    <a href="#" class="ripple-btn relative overflow-hidden bg-[#8b0000] text-white text-xs font-bold py-2 px-4 rounded-lg shrink-0 hover:bg-red-900 transition">Arahkan</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center shrink-0 bg-[#fffdf8]">
+                        <i class="fa-solid fa-chart-simple text-gray-700"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-[#0d5c31] text-sm">Parkir & akses</h3>
+                        <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Parkir mobil & motor tersedia. Dekat area kuliner.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#fffdf8] rounded-2xl shadow-sm border border-gray-300 p-4 mb-6">
+                <h3 class="font-bold text-[#8b0000] text-sm mb-2">Jam operasional</h3>
+                <p class="text-xs text-gray-700 font-medium mb-2">Senin - Minggu - 08.00 - 22.00</p>
+                <p class="text-[11px] text-gray-500 leading-relaxed">Cocok untuk beli sarapan pagi, cari roti siang hari, sampai dessert late hangout.</p>
+            </div>
+        </div>
+
+        <!-- ==================== TAMPILAN 3: KONTAK ==================== -->
+        <div id="contact-view" class="hidden flex flex-col gap-4 animate-fade-in">
+            <h2 class="text-[11px] font-bold text-gray-600 tracking-widest uppercase">KONTAK</h2>
+            
+            <div class="bg-[#fffdf8] rounded-2xl shadow-sm border border-gray-300 flex flex-col overflow-hidden">
+                <!-- Kontak Item Template -->
+                <div class="flex items-center gap-3 p-4 border-b border-gray-200">
+                    <div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center shrink-0 bg-[#fffdf8]">
+                        <i class="fa-solid fa-user text-gray-700"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-[#0d5c31] text-sm leading-tight">Admin Cherry Bake House</h3>
+                        <p class="text-[11px] text-gray-500 mt-0.5">0812-3456-7890</p>
+                    </div>
+                    <a href="#" class="ripple-btn relative overflow-hidden bg-[#8b0000] text-white text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded-lg shrink-0 hover:bg-red-900 transition">WhatsApp</a>
+                </div>
+
+                <div class="flex items-center gap-3 p-4 border-b border-gray-200">
+                    <div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center shrink-0 bg-[#fffdf8]">
+                        <i class="fa-solid fa-share text-gray-700"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-[#0d5c31] text-sm leading-tight">Email</h3>
+                        <p class="text-[11px] text-gray-500 mt-0.5">hello@cherrybakehouse.com</p>
+                    </div>
+                    <a href="#" class="ripple-btn relative overflow-hidden bg-[#8b0000] text-white text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded-lg shrink-0 hover:bg-red-900 transition">Kirim</a>
+                </div>
+
+                <div class="flex items-center gap-3 p-4 border-b border-gray-200">
+                    <div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center shrink-0 bg-[#fffdf8]">
+                        <i class="fa-brands fa-instagram text-gray-700 text-lg"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-[#0d5c31] text-sm leading-tight">Instagram</h3>
+                        <p class="text-[11px] text-gray-500 mt-0.5">@cherrybakehouse</p>
+                    </div>
+                    <a href="#" class="ripple-btn relative overflow-hidden bg-[#8b0000] text-white text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded-lg shrink-0 hover:bg-red-900 transition">Lihat</a>
+                </div>
+
+                <div class="flex items-center gap-3 p-4">
+                    <div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center shrink-0 bg-[#fffdf8]">
+                        <i class="fa-brands fa-facebook-f text-gray-700"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-[#0d5c31] text-sm leading-tight">Facebook</h3>
+                        <p class="text-[11px] text-gray-500 mt-0.5">Cherry Bake House</p>
+                    </div>
+                    <a href="#" class="ripple-btn relative overflow-hidden bg-[#8b0000] text-white text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded-lg shrink-0 hover:bg-red-900 transition">Buka</a>
+                </div>
+            </div>
+
+            <div class="bg-[#fffdf8] rounded-2xl shadow-sm border border-gray-300 p-4 mb-6">
+                <h3 class="font-bold text-[#8b0000] text-sm mb-2">Butuh bantuan cepat?</h3>
+                <p class="text-[11px] text-gray-600 mb-4">Klik tombol di bawah untuk terhubung langsung ke admin.</p>
+                <a href="#" class="ripple-btn relative overflow-hidden block w-full text-center bg-[#156b33] text-white text-sm font-bold py-3 rounded-xl hover:bg-green-800 transition shadow-sm">
+                    Contact Support
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ==================== BAGIAN BOTTOM NAVIGATION ==================== -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
+        <div class="max-w-md mx-auto pointer-events-auto px-4 pb-4">
+            <div class="flex rounded-xl overflow-hidden border border-gray-300 shadow-lg bg-[#fffdf8]">
+                
+                <button onclick="switchTab('home')" id="nav-home" class="ripple-btn relative overflow-hidden flex-1 flex flex-col items-center justify-center py-3 bg-[#fffdf8] text-gray-600 transition-colors">
+                    <i class="fa-solid fa-table-cells text-xl mb-1"></i>
+                    <span class="text-[11px] font-bold">Home</span>
+                </button>
+
+                <button onclick="switchTab('location')" id="nav-location" class="ripple-btn relative overflow-hidden flex-1 flex flex-col items-center justify-center py-3 bg-[#8b0000] text-white transition-colors">
+                    <i class="fa-solid fa-location-dot text-xl mb-1"></i>
+                    <span class="text-[11px] font-bold">Tap Location</span>
+                </button>
+
+                <button onclick="switchTab('contact')" id="nav-contact" class="ripple-btn relative overflow-hidden flex-1 flex flex-col items-center justify-center py-3 bg-[#fffdf8] text-gray-600 transition-colors">
+                    <i class="fa-solid fa-user text-xl mb-1"></i>
+                    <span class="text-[11px] font-bold">Kontak</span>
+                </button>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // --------------------------------------------------------
+        // 1. FUNGSI PINDAH TAB (MENU BAWAH)
+        // --------------------------------------------------------
+        let currentTab = 'home';
+        switchTab('home');
+
+        function switchTab(tabName) {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('location-view').classList.add('hidden');
+            document.getElementById('contact-view').classList.add('hidden');
+            
+            document.getElementById(tabName + '-view').classList.remove('hidden');
+
+            const navs = ['home', 'location', 'contact'];
+            navs.forEach(nav => {
+                const btn = document.getElementById('nav-' + nav);
+                btn.classList.remove('bg-[#8b0000]', 'text-white');
+                btn.classList.add('bg-[#fffdf8]', 'text-gray-600');
+            });
+
+            const activeBtn = document.getElementById('nav-' + tabName);
+            activeBtn.classList.remove('bg-[#fffdf8]', 'text-gray-600');
+            activeBtn.classList.add('bg-[#8b0000]', 'text-white');
+        }
+
+        // --------------------------------------------------------
+        // 2. FUNGSI STATUS JAM BUKA / TUTUP OTOMATIS
+        // --------------------------------------------------------
+        function updateStoreStatus() {
+            const statusDiv = document.getElementById('store-status');
+            const currentHour = new Date().getHours();
+            
+            // Jam operasional: 08:00 sampai 21:59 (22:00 tutup)
+            if (currentHour >= 8 && currentHour < 22) {
+                // Tampilan saat toko BUKA
+                statusDiv.className = 'inline-flex items-center gap-1.5 bg-green-100 text-green-700 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide border border-green-200';
+                statusDiv.innerHTML = '<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> BUKA SETIAP HARI 08.00 - 22.00';
+            } else {
+                // Tampilan saat toko TUTUP
+                statusDiv.className = 'inline-flex items-center gap-1.5 bg-red-100 text-red-700 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide border border-red-200';
+                statusDiv.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-500"></span> TUTUP • BUKA BESOK JAM 08.00';
+            }
+        }
+        updateStoreStatus(); // Jalankan saat pertama load
+        setInterval(updateStoreStatus, 60000); // Cek ulang setiap 1 menit
+
+        // --------------------------------------------------------
+        // 3. FUNGSI SHARE TOMBOL ATAS KANAN
+        // --------------------------------------------------------
+        document.getElementById('share-btn').addEventListener('click', async () => {
+            const shareData = {
+                title: 'Cherry Bake House',
+                text: 'Temukan menu premium dan info lengkap Cherry Bake House di sini!',
+                url: window.location.href,
+            };
+
+            try {
+                // Jika dibuka di HP yang mendukung fitur Share
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    // Jika di laptop, salin link ke clipboard dan munculkan pop up toast
+                    navigator.clipboard.writeText(window.location.href);
+                    const toast = document.getElementById('toast');
+                    toast.style.opacity = '1';
+                    setTimeout(() => { toast.style.opacity = '0'; }, 3000); // Hilang setelah 3 detik
+                }
+            } catch (err) {
+                console.log('Error sharing:', err);
+            }
+        });
+
+        // --------------------------------------------------------
+        // 4. FUNGSI ANIMASI RIPPLE (EFEK GELOMBANG SAAT DIKLIK)
+        // --------------------------------------------------------
+        const rippleButtons = document.querySelectorAll('.ripple-btn');
+        rippleButtons.forEach(button => {
+            button.addEventListener('mousedown', function (e) {
+                // Hapus efek gelombang sebelumnya jika ada
+                const oldRipple = this.querySelector('.ripple');
+                if (oldRipple) { oldRipple.remove(); }
+
+                // Buat elemen lingkaran baru
+                const circle = document.createElement('span');
+                const diameter = Math.max(this.clientWidth, this.clientHeight);
+                const radius = diameter / 2;
+
+                const rect = this.getBoundingClientRect();
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - rect.left - radius}px`;
+                circle.style.top = `${e.clientY - rect.top - radius}px`;
+                circle.classList.add('ripple');
+
+                this.appendChild(circle);
+
+                // Hapus elemen setelah animasi selesai (600ms)
+                setTimeout(() => {
+                    circle.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
